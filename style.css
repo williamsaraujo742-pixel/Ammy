@@ -1,0 +1,176 @@
+body {
+    font-family: 'Trebuchet MS', 'Comic Sans MS', sans-serif; /* Letra redondeada y tierna */
+    background-color: #ffd1dc; /* Fondo rosa pastel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Evita que las nubes y corazones generen barras de scroll */
+    position: relative;
+}
+
+/* --- DECORACIÓN DE FONDO --- */
+.fondo-decoracion {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Permite hacer clic a través de la decoración */
+    z-index: 0;
+}
+
+.nube {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.8;
+    animation: flotar 6s infinite ease-in-out alternate;
+}
+.n1 { top: 10%; left: 10%; }
+.n2 { top: 20%; right: 15%; font-size: 60px; animation-delay: 2s; }
+.n3 { bottom: 15%; left: 20%; font-size: 100px; animation-delay: 4s; }
+
+.corazon-fondo {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.6;
+    animation: flotar 4s infinite ease-in-out alternate;
+}
+.c1 { top: 30%; left: 30%; animation-delay: 1s; }
+.c2 { top: 15%; left: 60%; font-size: 35px; animation-delay: 3s; }
+.c3 { bottom: 25%; right: 25%; animation-delay: 0.5s; }
+.c4 { bottom: 10%; right: 10%; animation-delay: 2.5s; }
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+}
+
+/* --- LA CARTA Y EL SOBRE --- */
+.carta {
+    width: 700px;
+    max-width: 90%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    transition: all 0.8s ease;
+    padding: 40px;
+}
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+/* El cuerpo blanco del sobre */
+.cuerpo-sobre {
+    width: 180px;
+    height: 120px;
+    background: white;
+    border: 2px solid #f8bbd0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.corazon-principal {
+    font-size: 50px;
+    animation: latido 1s infinite;
+}
+
+/* Las alas del sobre */
+.alas {
+    position: absolute;
+    width: 100%;
+    top: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.ala {
+    width: 70px;
+    height: 40px;
+    background: white;
+    border: 2px solid #f8bbd0;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.ala-izq { transform: rotate(-15deg); border-right: none; }
+.ala-der { transform: rotate(15deg); border-left: none; }
+
+.texto-instruccion {
+    margin-top: 30px;
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: parpadeo 2s infinite;
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* --- ESTADO ABIERTO --- */
+.contenido {
+    display: none;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.carta.abierta {
+    padding: 40px;
+}
+
+.carta.abierta .sobre {
+    display: none; /* Ocultamos el sobre al abrir */
+}
+
+.carta.abierta .contenido {
+    display: flex;
+    opacity: 1;
+}
+
+.fotos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 40%;
+}
+
+.fotos img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+.mensaje {
+    width: 60%;
+    color: #555;
+    line-height: 1.6;
+}
+
+.mensaje h3 {
+    color: #e91e63;
+    margin-top: 0;
+}
